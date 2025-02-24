@@ -1,16 +1,18 @@
+import os
 from datetime import datetime
 from bson import ObjectId
 from pymongo import MongoClient, DESCENDING
 from werkzeug.security import generate_password_hash, check_password_hash
 from user import User
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb+srv://gerardohp93:DHkkwBpyT7yqimk2@cluster0.ohkgl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient(os.getenv('MONGODB_URI'))
 
 
 #Send a ping
 try:
   client.admin.command('ping')
-  print("CONECTADO CORRECTAMENTE")
+  # print("CONECTADO CORRECTAMENTE")
 except Exception as e:
   print(e)
 
